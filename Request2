@@ -1,0 +1,9 @@
+SELECT train_direction.train_number, 
+train_direction.train_name, 
+from_sity.from_sity, to_sity.to_sity 
+FROM train_direction 
+JOIN 
+from_sity ON train_direction.from_id = from_sity.from_sity_id 
+JOIN 
+to_sity ON train_direction.to_id = to_sity.to_sity_id 
+WHERE from_sity.from_sity = 'MSK';
