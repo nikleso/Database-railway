@@ -1,0 +1,95 @@
+-- создание базы данных 
+CREATE DATABASE test3;
+
+-- Паспорт (passport)
+CREATE TABLE passports (
+	passport_id SERIAL PRIMARY KEY,
+	document_name VARCHAR(50) NOT NULL,
+	series_passport VARCHAR(10) UNIQUE  NOT NULL,
+	number_passport VARCHAR(20) UNIQUE NOT NULL
+);
+
+--2 Пользователь (user)
+CREATE TABLE users ( 
+	user_id SERIAL PRIMARY KEY, 
+	first_name VARCHAR(50) NOT NULL, 
+	last_name VARCHAR(50) NOT NULL, 
+	middle_name VARCHAR(50),
+	birthday DATE NOT NULL, -- 2000-08-17
+	passport_id INTEGER REFERENCES passports(passport_id), 
+	sex VARCHAR(3) NOT NULL, 
+	phone_number VARCHAR(20) UNIQUE NOT NULL
+);
+
+-- Направления из (from_sity)
+CREATE TABLE from_sity (
+	from_sity_id SERIAL PRIMARY KEY,
+	from_sity VARCHAR(100) NOT NULL 
+);
+-- Направления в (to_sity)
+CREATE TABLE to_sity (
+	to_sity_id SERIAL PRIMARY KEY,
+	to_sity VARCHAR(100) NOT NULL
+);
+--5 сборка направления(train direction)
+CREATE TABLE train_direction(
+	train_direction_id SERIAL PRIMARY KEY,
+	train_number INTEGER UNIQUE NOT NULL, -- номер поезда
+	train_name VARCHAR(100) NOT NULL,
+	
+	from_id INTEGER REFERENCES from_sity(from_sity_id),
+	to_id INTEGER REFERENCES to_sity(to_sity_id)
+);
+-- Тип вагона (type of van)
+CREATE TABLE type_of_van (
+	type_id SERIAL PRIMARY KEY,
+	type VARCHAR(100) NOT NULL  -- «Люкс», СВ, Купе, Микст (люкс+св или св+купе), Плацкарт, Сидячие, международные (люкс+св+купе)
+);
+-- Номер вагона 
+CREATE TABLE number_vans (
+	num_van_id SERIAL PRIMARY KEY,
+	number VARCHAR(100) NOT NULL
+);
+--9 Поезд (train)
+CREATE TABLE trains (
+	train_id SERIAL PRIMARY KEY,
+	train_direction INTEGER REFERENCES train_direction(train_direction_id),
+	departure TIME NOT NULL,
+	arrival TIME NOT NULL
+);
+-- Места в вагоне (seats)
+CREATE TABLE seats (
+	seat_id SERIAL PRIMARY KEY,
+	train INTEGER REFERENCES trains(train_id),
+	type_van INTEGER REFERENCES type_of_van(type_id),
+	number_van  INTEGER REFERENCES number_vans(num_van_id),
+	seat VARCHAR(100) NOT NULL,
+	cost DECIMAL(50, 2) NOT NULL
+);
+--? Таблица дополнительных услуг (additional_services):
+CREATE TABLE additional_services (
+	service_id SERIAL PRIMARY KEY,
+	service_type VARCHAR(50) NOT NULL,
+boost DECIMAL(10, 2),
+additional_info TEXT
+);
+--? Таблица скидок (discounts):
+CREATE TABLE discounts (
+	discount_id SERIAL PRIMARY KEY,
+	discount_type VARCHAR(50) NOT NULL,
+discount DECIMAL(10, 2),
+additional_info TEXT );
+
+-- Билет (Ticket).
+CREATE TABLE tickets (
+	ticket_id SERIAL PRIMARY KEY,
+	-- пассажир 
+	name INTEGER REFERENCES users(user_id),
+	-- поезд
+	seat INTEGER REFERENCES seats(seat_id),
+	-- доп услуги
+	service INTEGER REFERENCES additional_services(service_id),
+	-- скидка
+	discount INTEGER REFERENCES discounts(discount_id)
+);
+
