@@ -1,0 +1,29 @@
+-- Request to display all tickets
+
+  SELECT tickets.ticket_id, users.first_name, users.last_name,
+		passports.document_name, passports.series_passport, passports.number_passport,
+		train_direction.train_number, from_sity.from_sity, trains.departure, to_sity.to_sity,
+		trains.arrival, number_vans.number, seats.seat_id, seats.cost, 
+		additional_services.service_type, discounts.discount,
+		ROUND ((seats.cost - (seats.cost * discounts.discount / 100)) + additional_services.boost) AS fix_prise
+		FROM tickets
+		JOIN
+		users ON tickets.name = users.user_id
+		JOIN
+		passports ON users.passport_id = passports.passport_id
+		JOIN
+		seats ON tickets.seat = seats.seat_id
+		JOIN
+		additional_services ON tickets.service = additional_services.service_id
+		JOIN
+		discounts ON tickets.discount = discounts.discount_id
+		JOIN
+		number_vans ON seats.number_van = number_vans.num_van_id
+		JOIN 
+		trains ON seats.train = trains.train_id
+		JOIN 
+		train_direction ON trains.train_direction = train_direction.train_direction_id
+		JOIN 
+		from_sity ON train_direction.from_id = from_sity.from_sity_id
+		Join
+		to_sity ON train_direction.to_id = to_sity.to_sity_id
