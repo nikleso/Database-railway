@@ -1,0 +1,245 @@
+-- Паспорт (passport)
+  INSERT INTO passports(
+	passport_id, document_name, series_passport, number_passport)
+	VALUES (DEFAULT, 'Паспорт РФ', 1111, 123456),
+	(DEFAULT, 'Паспорт РФ', 1112, 142424),
+	(DEFAULT, 'Паспорт РФ', 1113, 111111),
+	(DEFAULT, 'Паспорт РФ', 1114, 222222),
+	(DEFAULT, 'Паспорт РФ', 1115, 333333),
+	(DEFAULT, 'Паспорт РФ', 1116, 344444),
+	(DEFAULT, 'Паспорт РФ', 1117, 555555),
+	(DEFAULT, 'Паспорт РФ', 1118, 666666),
+	(DEFAULT, 'Паспорт РФ', 1119, 564664),
+	(DEFAULT, 'Загранпаспорт', 'AA', 000000),
+	(DEFAULT, 'Паспорт РФ', 1229, 564444),
+	(DEFAULT, 'Паспорт РФ', 1922, 888886),
+	(DEFAULT, 'Паспорт РФ', 5555, 666885),
+	(DEFAULT, 'Паспорт РФ', 4443, 555890),
+  (DEFAULT, 'Паспорт РФ', 3335, 333246);
+
+-- Пользователь (user)
+	INSERT INTO users(
+	user_id, first_name, last_name, middle_name, birthday, passport_id, sex, phone_number)
+	VALUES (DEFAULT, 'Анна', 'Максимова', 'Алексеевна', '1960-06-26', 25, 'ЖЕН', 89996466466),
+	(DEFAULT, 'Яна', 'Цветаева', 'Сергеевна', '2001-07-10', 12, 'ЖЕН', 89990000000),
+	(DEFAULT, 'Арина', 'Громова', 'Юрьевна', '1999-08-22', 13, 'ЖЕН', 89991110011),
+	(DEFAULT, 'Максим', 'Соболев', 'Сергеевич', '1994-09-29', 14, 'МУЖ', 89993335533),
+	(DEFAULT, 'Игорь', 'Громов', 'Иваныч', '1990-01-01', 15, 'МУЖ', 89992255522),
+	(DEFAULT, 'Илья', 'Воронцов', 'Витальевич', '2002-02-06', 16, 'МУЖ', 89991112211),
+	(DEFAULT, 'Любовь', 'Бестужева', 'Григорьева', '2007-12-16', 17, 'ЖЕН', 89992221122),
+	(DEFAULT, 'Артём', 'Лебедев', 'Дмитриевич', '1999-09-18', 18, 'МУЖ', 89997778877),
+	(DEFAULT, 'Юля', 'Гаврилова', 'Алексеевна', '2003-05-24', 19, 'ЖЕН', 89993339933),
+	(DEFAULT, 'Erik', 'Miklin', '', '2000-06-02', 20, 'МУЖ', +3004567890),
+	(DEFAULT, 'Елена', 'Смирнова', 'Андреевна', '2003-06-07', 21, 'МУЖ', 89045553377),
+	(DEFAULT, 'Николай', 'Ёлкин', 'Н колаевич', '2002-06-14', 22, 'МУЖ', 89046663277),
+	(DEFAULT, 'Семён', 'Михайлов', 'Егорович', '2001-06-12', 23, 'МУЖ', 89993237788),
+	(DEFAULT, 'Ева', 'Саймолова', 'Алексеевна', '1999-04-22', 24, 'ЖЕН', 89992323322),
+	(DEFAULT, 'Анна', 'Смородина', 'Евгеньевна', '1955-06-01', 26, 'ЖЕН', 89043332578);
+	
+-- Направления из (from_sity)
+	INSERT INTO from_sity(from_sity_id, from_sity)
+	VALUES (DEFAULT, 'MSK'),
+	(DEFAULT, 'SPB'),
+	(DEFAULT, 'NSK'),
+	(DEFAULT, 'EKB'),
+	(DEFAULT, 'KZN'),
+	(DEFAULT, 'OMS'),
+	(DEFAULT, 'SAM'),
+	(DEFAULT, 'UFA'),
+	(DEFAULT, 'PRM'),
+	(DEFAULT, 'VRN'),
+  (DEFAULT, 'TOM');
+
+-- Направления в (to_sity)
+	INSERT INTO to_sity(to_sity_id, to_sity)
+	VALUES (DEFAULT, 'MSK'), --1
+	(DEFAULT, 'SPB'), --2
+	(DEFAULT, 'NSK'),  --3
+	(DEFAULT, 'EKB'), --4
+	(DEFAULT, 'KZN'), --5
+	(DEFAULT, 'OMS'), --6
+	(DEFAULT, 'SAM'), --7
+	(DEFAULT, 'UFA'), --8
+	(DEFAULT, 'PRM'), --9
+	(DEFAULT, 'VRN'), --10
+  (DEFAULT, 'TOM');
+
+-- Сборка направления(train direction)
+	INSERT INTO public.train_direction(
+	train_direction_id, train_number, train_name, from_id, to_id)
+	VALUES (DEFAULT, 001, 'Премиум', 1, 11),
+	(DEFAULT, 023, 'Лотос', 2, 10),
+	(DEFAULT, 003, 'Океан', 3, 9),
+	(DEFAULT, 011, 'Урал', 4, 5),
+	(DEFAULT, 076, 'Вятка', 5, 6),
+	(DEFAULT, 006, 'Сапсан', 6, 7),
+	(DEFAULT, 029, 'Сура', 7, 5),
+	(DEFAULT, 008, 'Ямал', 8, 4),
+	(DEFAULT, 007, 'Сапсан', 9, 2),
+	(DEFAULT, 002, 'Двухэтажный', 10, 2),
+	(DEFAULT, 024, 'Двухэтажный', 11, 1),
+	(DEFAULT, 036, 'Лотос', 1, 2),
+	(DEFAULT, 044, 'Сапсан', 4, 9),
+	(DEFAULT, 020, 'Двухэтажный', 6, 3),
+	(DEFAULT, 038, 'Ямал', 5, 2),
+  (DEFAULT, 111, 'Сапсан', 8, 1);
+
+-- Тип вагона (type of van)
+	INSERT INTO type_of_van(type_id, type)
+	VALUES (DEFAULT, 'Люкс'),
+	(DEFAULT, 'СВ'),
+	(DEFAULT, 'Купе'),
+	(DEFAULT, 'Плацкарт'),
+  (DEFAULT, 'Сидячие');
+
+-- Номер вагона 
+	INSERT INTO number_vans(num_van_id, "number")
+	VALUES (DEFAULT, 1),
+	(DEFAULT, 2),
+	(DEFAULT, 3),
+	(DEFAULT, 4),
+  (DEFAULT, 5);
+
+-- Поезд (train)
+	INSERT INTO trains(train_id, train_direction, departure, arrival)
+	VALUES (DEFAULT, 17, '2023-07-13 00:20', '2023-07-15 13:14'),
+	(DEFAULT, 18, '2023-07-12 09:00', '2023-07-12 23:00'),
+	(DEFAULT, 19, '2023-07-10 09:00', '2023-07-11 10:06'),
+	(DEFAULT, 20, '2023-07-13 02:30', '2023-07-13 19:15'),
+	(DEFAULT, 21, '2023-07-15 00:46', '2023-07-16 06:52'),
+	(DEFAULT, 22, '2023-07-11 07:20', '2023-07-12 15:05'),
+	(DEFAULT, 23, '2023-07-13 00:33', '2023-07-13 14:54'),
+	(DEFAULT, 24, '2023-07-11 12:46', '2023-07-12 05:09'),
+	(DEFAULT, 25, '2023-07-10 13:50', '2023-07-12 12:30'),
+	(DEFAULT, 26, '2023-07-14 06:10', '2023-07-15 05:13'),
+	(DEFAULT, 27, '2023-07-13 12:51', '2023-07-15 16:00'),
+	(DEFAULT, 28, '2023-07-10 06:10', '2023-07-10 15:13'),
+	(DEFAULT, 29, '2023-07-13 08:40', '2023-07-14 05:30'),
+	(DEFAULT, 30, '2023-07-14 12:10', '2023-07-14 21:10'),
+	(DEFAULT, 31, '2023-07-11 09:40', '2023-07-11 23:00'),
+  (DEFAULT, 32, '2023-07-15 01:10', '2023-07-15 07:44');
+
+-- Места в вагоне (seats)
+	INSERT INTO seats(seat_id, train, type_van, number_van, seat, cost)
+	VALUES (DEFAULT, 1, 3, 1, 10, 9000.00),
+	(DEFAULT, 1, 3, 1, 11, 9000.00),
+	(DEFAULT, 1, 4, 2, 20, 7800.00),
+	(DEFAULT, 1, 4, 2, 22, 7800.00),
+	(DEFAULT, 1, 4, 2, 24, 7800.00),
+
+	(DEFAULT, 2, 3, 1, 01, 9500.00),
+	(DEFAULT, 2, 3, 1, 04, 9500.00),
+	(DEFAULT, 2, 4, 2, 21, 4600.00),
+	(DEFAULT, 2, 4, 2, 26, 4600.00),
+
+	(DEFAULT, 3, 3, 1, 05, 14000.00),
+	(DEFAULT, 3, 3, 1, 06, 14000.00),
+	(DEFAULT, 3, 4, 2, 22, 7200.00),
+	(DEFAULT, 3, 4, 2, 29, 7200.00),
+
+	(DEFAULT, 4, 4, 1, 20, 5000.00),
+	(DEFAULT, 4, 4, 1, 21, 5000.00),
+	(DEFAULT, 4, 5, 2, 34, 2400.00),
+	(DEFAULT, 4, 5, 2, 35, 2400.00),
+
+	(DEFAULT, 5, 2, 1, 01, 14000.00),
+	(DEFAULT, 5, 2, 1, 02, 14000.00),
+	(DEFAULT, 5, 3, 2, 23, 4900.00),
+	(DEFAULT, 5, 3, 2, 25, 4900.00),
+	(DEFAULT, 5, 4, 3, 38, 2500.00),
+
+	(DEFAULT, 6, 2, 1, 03, 24000.00),
+	(DEFAULT, 6, 2, 1, 04, 24000.00),
+	(DEFAULT, 6, 2, 1, 06, 24000.00),
+	(DEFAULT, 6, 3, 2, 24, 11000.00),
+
+	(DEFAULT, 7, 4, 2, 28, 4800.00),
+	(DEFAULT, 7, 5, 3, 39, 1900.00),
+	(DEFAULT, 7, 5, 3, 43, 1900.00),
+	(DEFAULT, 7, 5, 3, 44, 1900.00),
+
+	(DEFAULT, 8, 3, 1, 24, 4000.00),
+	(DEFAULT, 8, 3, 1, 25, 4000.00),
+	(DEFAULT, 8, 4, 2, 33, 2600.00),
+	(DEFAULT, 8, 4, 2, 37, 2600.00),
+
+	(DEFAULT, 9, 3, 1, 24, 14000.00),
+	(DEFAULT, 9, 3, 2, 24, 14000.00),
+	(DEFAULT, 9, 3, 2, 24, 14000.00),
+	(DEFAULT, 9, 4, 3, 24, 7200.00),
+
+	(DEFAULT, 10, 2, 1, 24, 20000.00),
+	(DEFAULT, 10, 2, 1, 25, 20000.00),
+	(DEFAULT, 10, 3, 3, 44, 9200.00),
+	(DEFAULT, 10, 3, 4, 67, 9200.00),
+
+	(DEFAULT, 11, 1, 2, 21, 58000.00),
+	(DEFAULT, 11, 3, 2, 04, 20000.00),
+	(DEFAULT, 11, 3, 2, 22, 20000.00),
+	(DEFAULT, 11, 4, 2, 28, 9700.00),
+	
+	(DEFAULT, 12, 1, 2, 05, 58000.00),
+	(DEFAULT, 12, 3, 2, 03, 20000.00),
+	(DEFAULT, 12, 3, 2, 06, 20000.00),
+	(DEFAULT, 12, 4, 2, 09, 9700.00),
+	
+	(DEFAULT, 13, 1, 2, 23, 59000.00),
+	(DEFAULT, 13, 3, 2, 02, 14000.00),
+	(DEFAULT, 13, 3, 2, 02, 14000.00),
+	(DEFAULT, 13, 4, 2, 04, 9700.00),
+	
+	(DEFAULT, 14, 1, 2, 06, 66000.00),
+	(DEFAULT, 14, 3, 2, 04, 27000.00),
+	(DEFAULT, 14, 4, 2, 09, 19000.00),
+	(DEFAULT, 14, 5, 2, 08, 9700.00),
+	
+	(DEFAULT, 15, 1, 2, 01, 58000.00),
+	(DEFAULT, 15, 3, 2, 02, 20000.00),
+	(DEFAULT, 15, 3, 2, 29, 20000.00),
+	(DEFAULT, 15, 5, 2, 38, 1900.00),
+	
+	(DEFAULT, 16, 1, 2, 26, 54000.00),
+	(DEFAULT, 16, 3, 2, 27, 10000.00),
+	(DEFAULT, 16, 4, 2, 28, 8000.00),
+	(DEFAULT, 16, 5, 2, 29, 1700.00);
+	
+--? Таблица дополнительных услуг (additional_services)
+	INSERT INTO additional_services(service_id, service_type, boost, additional_info)
+	VALUES (DEFAULT, 'НЕТ', 0, '+'),
+	(DEFAULT, 'Дополнительный багаж', 550.00, '+'),
+	(DEFAULT, 'Животное', 1800.00, '+'),
+  (DEFAULT, 'Постельное белье', 200.00, '+');
+
+--? Таблица скидок (discounts)
+	INSERT INTO discounts(discount_id, discount_type, discount, additional_info)
+	VALUES (DEFAULT, 'НЕТ', 0, '-'),
+	(DEFAULT, 'Ребенок до 5 лет', 35, '-'),
+	(DEFAULT, 'Ребенок до 14 лет', 25, '-'),
+	(DEFAULT, 'Пенсионер', 60, '-'),
+	(DEFAULT, 'Студент', 50, '-');
+
+-- Билет (Ticket)
+	INSERT INTO tickets(ticket_id, name, seat, service, discount)
+	VALUES (DEFAULT, 31, 67, 1, 1),
+	(DEFAULT, 32, 74, 1, 1),
+	(DEFAULT, 33, 84, 1, 5),
+	(DEFAULT, 34, 105, 4, 1),
+	
+	(DEFAULT, 35, 130, 1, 1),
+	(DEFAULT, 35, 131, 1, 2),
+	
+	(DEFAULT, 36, 129, 2, 1),
+	(DEFAULT, 37, 88, 3, 5),
+	(DEFAULT, 38, 94, 1, 1),
+	(DEFAULT, 39, 117, 2, 1),
+	(DEFAULT, 40, 113, 2, 1),
+	(DEFAULT, 41, 106, 1, 1),
+	
+	(DEFAULT, 43, 112, 2, 1),
+	(DEFAULT, 43, 73, 3, 2),
+	
+	(DEFAULT, 42, 118, 3, 1),
+	(DEFAULT, 42, 119, 1, 3),
+	
+	(DEFAULT, 44, 123, 2, 1),
+  (DEFAULT, 45, 101, 2, 4);
