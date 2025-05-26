@@ -1,0 +1,13 @@
+SELECT from_sity.from_sity, 
+COUNT(*) AS count 
+FROM tickets 
+JOIN 
+seats ON tickets.seat = seats.seat_id 
+JOIN 
+trains ON seats.train = trains.train_id 
+JOIN 
+train_direction ON trains.train_direction = train_direction.train_direction_id 
+JOIN 
+from_sity ON train_direction.from_id = from_sity.from_sity_id 
+GROUP BY from_sity.from_sity 
+HAVING COUNT(*) > 2;
